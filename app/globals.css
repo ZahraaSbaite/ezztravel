@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --surface-1: 255 255 255;
+  --surface-2: 244 241 234;
+  --panel: 246 244 239;
+  --fg: 20 30 42;
+  --edge: 20 30 42;
+  --vignette: 220 213 199;
+}
+
+.dark {
+  color-scheme: dark;
+  --surface-1: 14 27 46;
+  --surface-2: 34 31 29;
+  --panel: 22 39 63;
+  --fg: 244 241 234;
+  --edge: 244 241 234;
+  --vignette: 21 19 18;
+}
+
+body {
+  @apply bg-surface text-fg font-sans;
+}
+
+body,
+header,
+section,
+footer {
+  transition: background-color 400ms ease, color 400ms ease, border-color 400ms ease;
+}
+
+::selection {
+  background: #C6A15B;
+  color: #0E1B2E;
+}
+
+.bg-noise {
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgba(198, 161, 91, 0.05) 0px,
+      rgba(198, 161, 91, 0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+.bg-shine {
+  background-image: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(244, 241, 234, 0.55) 46%,
+    rgba(244, 241, 234, 0.9) 50%,
+    rgba(244, 241, 234, 0.55) 54%,
+    transparent 70%
+  );
+  background-size: 250% 100%;
+}
+
+.ornament {
+  @apply flex items-center justify-center gap-3 text-gold/70;
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  height: 1px;
+  width: 2.5rem;
+  background: currentColor;
+  opacity: 0.5;
+}
