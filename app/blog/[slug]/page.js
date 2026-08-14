@@ -10,7 +10,7 @@ export const revalidate = 0;
 async function getPost(slug) {
   const { data } = await supabase
     .from("posts")
-    .select("id, title, slug, thumbnail_url, content, video_url, created_at, categories(name, slug)")
+    .select("id, title, subtitle, slug, thumbnail_url, content, video_url, created_at, categories(name, slug)")
     .eq("slug", slug)
     .eq("published", true)
     .maybeSingle();
@@ -72,6 +72,11 @@ export default async function BlogPostPage({ params }) {
             </div>
 
             <div className="space-y-5 text-[15px] leading-[1.9] text-fg/75">
+              {post.subtitle && (
+                <p className="font-display text-xl italic leading-relaxed text-fg">
+                  {post.subtitle}
+                </p>
+              )}
               {paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
