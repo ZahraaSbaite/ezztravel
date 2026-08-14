@@ -36,6 +36,7 @@ export async function GET() {
     .limit(50);
 
   if (error) {
+    console.error("GET /api/reviews:", error.message);
     return NextResponse.json({ error: "Could not load reviews." }, { status: 500 });
   }
   return NextResponse.json({ reviews: data });
@@ -70,6 +71,7 @@ export async function POST(request) {
     .single();
 
   if (error) {
+    console.error("POST /api/reviews:", error.message);
     return NextResponse.json({ error: "Could not submit review." }, { status: 500 });
   }
 
