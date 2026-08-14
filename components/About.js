@@ -1,27 +1,11 @@
 import { supabase } from "@/lib/supabaseClient";
 
-const defaults = {
-  eyebrow: "ABOUT",
-  heading: "Built on trust,\nnot popularity",
-  pull_quote: "Discover the world with discretion, comfort, and priority.",
-  paragraph_1:
-    "At Ezz Travel, we design every journey around the person taking it — from breathtaking honeymoons crafted exclusively for two, to VIP airport meet & assist that turns arrival into part of the experience, to spiritual journeys arranged with elegance and care. Based in Beirut and Abidjan, we bring royal treatment to every stage of travel: flights, visas, transfers, and the details most agencies overlook.",
-  paragraph_2:
-    "Where discretion matters, like medical travel to Lebanon, we help clients navigate the details honestly, backed by real experience rather than promises. We believe every trip — and every love story — deserves to be unforgettable. That's why we handle everything from A to Z: tickets, hotels, transfers, experiences. You tell us what you dream of, we make it happen, your way.",
-  stats: [
-    { value: "20+", label: "Years of experience" },
-    { value: "Worldwide", label: "Destinations covered" },
-    { value: "2", label: "Offices — Beirut & Abidjan" },
-  ],
-  whatsapp_link: "https://wa.me/96181839155",
-  whatsapp_label: "WhatsApp +961 81 839 155",
-};
-
 export default async function About() {
-  const { data } = await supabase.from("about_content").select("*").eq("id", 1).maybeSingle();
-  const about = { ...defaults, ...data };
-  const headingLines = about.heading.split("\n");
-  const stats = about.stats?.length ? about.stats : defaults.stats;
+  const { data: about } = await supabase.from("about_content").select("*").eq("id", 1).maybeSingle();
+  if (!about) return null;
+
+  const headingLines = (about.heading || "").split("\n");
+  const stats = about.stats?.length ? about.stats : [];
 
   return (
     <section id="about" className="relative overflow-hidden bg-surface px-6 py-28">
