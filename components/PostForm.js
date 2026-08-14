@@ -19,6 +19,7 @@ export default function PostForm({ post = null }) {
   const isEdit = Boolean(post);
 
   const [title, setTitle] = useState(post?.title || "");
+  const [subtitle, setSubtitle] = useState(post?.subtitle || "");
   const [slug, setSlug] = useState(post?.slug || "");
   const [categoryId, setCategoryId] = useState(post?.category_id || "");
   const [content, setContent] = useState(post?.content || "");
@@ -78,6 +79,7 @@ export default function PostForm({ post = null }) {
 
       const payload = {
         title: title.trim(),
+        subtitle: subtitle.trim(),
         slug: slugify(slug),
         content: content.trim(),
         video_url: videoUrl.trim() || null,
@@ -128,6 +130,20 @@ export default function PostForm({ post = null }) {
           maxLength={140}
           className={inputClass}
           placeholder="A weekend in the Bekaa Valley"
+        />
+      </div>
+
+      <div>
+        <label className="mb-1 block text-sm text-fg/70" htmlFor="subtitle">
+          Subtitle
+        </label>
+        <input
+          id="subtitle"
+          value={subtitle}
+          onChange={(e) => setSubtitle(e.target.value)}
+          maxLength={160}
+          className={inputClass}
+          placeholder="A short line shown on the blog card, before readers open the post"
         />
       </div>
 

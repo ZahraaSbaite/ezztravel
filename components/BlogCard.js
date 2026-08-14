@@ -35,7 +35,7 @@ export default function BlogCard({ post }) {
           {post.title}
         </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-fg/60">
-          {excerpt(post.content)}
+          {post.subtitle || excerpt(post.content)}
         </p>
         <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-gold">
           Read more

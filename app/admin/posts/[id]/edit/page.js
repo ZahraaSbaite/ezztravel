@@ -11,7 +11,7 @@ export default function EditPostPage({ params }) {
   useEffect(() => {
     supabase
       .from("posts")
-      .select("id, title, slug, thumbnail_url, content, video_url, category_id, published")
+      .select("id, title, subtitle, slug, thumbnail_url, content, video_url, category_id, published")
       .eq("id", params.id)
       .maybeSingle()
       .then(({ data, error: loadError }) => {

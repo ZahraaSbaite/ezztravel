@@ -25,7 +25,7 @@ export default async function BlogPage({ searchParams }) {
 
   let query = supabase
     .from("posts")
-    .select("id, title, slug, thumbnail_url, content, video_url, created_at, categories(name, slug)")
+    .select("id, title, subtitle, slug, thumbnail_url, content, video_url, created_at, categories(name, slug)")
     .eq("published", true)
     .order("created_at", { ascending: false });
 
