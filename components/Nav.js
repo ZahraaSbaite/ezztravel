@@ -30,53 +30,57 @@ export default function Nav() {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gold/20 bg-surface/95 shadow-[0_1px_0_rgba(198,161,91,0.15)] backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
-        <a href="/#home" className="group flex items-center gap-2.5">
-          <img
-            src="/logo-mark.png"
-            alt="Ezz Travel"
-            className="h-9 w-auto object-contain drop-shadow-[0_4px_16px_rgba(198,161,91,0.35)] transition-transform duration-300 group-hover:scale-105"
-          />
-          <span className="font-display text-lg tracking-[0.03em] text-fg">
-            Ezz Travel
-          </span>
-        </a>
-        <ul className="hidden gap-9 text-sm text-fg/80 md:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="relative py-1 transition-colors hover:text-gold after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <a
-            href="/#contact"
-            className="hidden rounded-sm border border-gold px-4 py-2 text-sm tracking-wide text-gold transition-all hover:bg-gold hover:text-night hover:shadow-gold-glow sm:inline-block"
-          >
-            Contact us
+    <>
+      <header className="sticky top-0 z-50 border-b border-gold/20 bg-surface/95 shadow-[0_1px_0_rgba(198,161,91,0.15)] backdrop-blur">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
+          <a href="/#home" className="group flex items-center gap-2.5">
+            <img
+              src="/logo-mark.png"
+              alt="Ezz Travel"
+              className="h-9 w-auto object-contain drop-shadow-[0_4px_16px_rgba(198,161,91,0.35)] transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="font-display text-lg tracking-[0.03em] text-fg">
+              Ezz Travel
+            </span>
           </a>
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-edge/20 text-fg/70 transition-colors hover:border-gold hover:text-gold md:hidden"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          </button>
-        </div>
-      </nav>
+          <ul className="hidden gap-9 text-sm text-fg/80 md:flex">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="relative py-1 transition-colors hover:text-gold after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <a
+              href="/#contact"
+              className="hidden rounded-sm border border-gold px-4 py-2 text-sm tracking-wide text-gold transition-all hover:bg-gold hover:text-night hover:shadow-gold-glow sm:inline-block"
+            >
+              Contact us
+            </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-edge/20 text-fg/70 transition-colors hover:border-gold hover:text-gold md:hidden"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </header>
 
-      {/* backdrop */}
+      {/* backdrop — kept outside <header> since its backdrop-blur would
+          otherwise become the containing block for these fixed elements and
+          clip them to the header's own height instead of the full screen */}
       <div
         onClick={() => setMenuOpen(false)}
         aria-hidden="true"
@@ -118,6 +122,6 @@ export default function Nav() {
           ))}
         </ul>
       </div>
-    </header>
+    </>
   );
 }
