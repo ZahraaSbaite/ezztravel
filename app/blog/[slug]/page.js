@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }) {
     <main>
       <Nav />
       <article className="bg-surface px-6 py-20 text-fg">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-5xl">
           <Link
             href="/blog"
             className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] text-fg/50 transition-colors hover:text-gold"
@@ -66,14 +66,16 @@ export default async function BlogPostPage({ params }) {
             {post.title}
           </h1>
 
-          <div className="mt-8 overflow-hidden rounded-lg border border-gold/15">
-            <img src={post.thumbnail_url} alt="" className="w-full object-cover" />
-          </div>
+          <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10">
+            <div className="overflow-hidden rounded-lg border border-gold/15 lg:sticky lg:top-28">
+              <img src={post.thumbnail_url} alt="" className="w-full object-cover" />
+            </div>
 
-          <div className="mt-10 space-y-5 text-[15px] leading-[1.9] text-fg/75">
-            {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            <div className="space-y-5 text-[15px] leading-[1.9] text-fg/75">
+              {paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </div>
 
           {post.video_url && (
