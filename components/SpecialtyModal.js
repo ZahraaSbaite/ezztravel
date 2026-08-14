@@ -5,6 +5,12 @@ import SpecialtyCard from "./SpecialtyCard";
 
 export default function SpecialtyModal({ item, onClose }) {
   useEffect(() => {
+    // This modal is only meant to be visible below the lg breakpoint (it's
+    // hidden with a CSS class on larger screens), but it still mounts there.
+    // Skip the scroll lock on desktop or it stays locked with nothing visible
+    // to close it.
+    if (window.matchMedia("(min-width: 1024px)").matches) return;
+
     document.body.style.overflow = "hidden";
     function handleKey(e) {
       if (e.key === "Escape") onClose();
