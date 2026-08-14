@@ -17,20 +17,7 @@ export default function SpecialtiesClient({ items }) {
     setModalOpen(true);
   }
 
-  function goPrev() {
-    setActiveIndex((i) => (i - 1 + items.length) % items.length);
-  }
-
-  function goNext() {
-    setActiveIndex((i) => (i + 1) % items.length);
-  }
-
   if (!items || items.length === 0) return null;
-
-  const navProps =
-    items.length > 1
-      ? { onPrev: goPrev, onNext: goNext, position: `${activeIndex + 1} / ${items.length}` }
-      : {};
 
   return (
     <section id="specialties" className="relative overflow-hidden bg-surface px-6 py-28 text-fg">
@@ -108,16 +95,14 @@ export default function SpecialtiesClient({ items }) {
 
           {panelOpen && (
             <div className="hidden lg:sticky lg:top-28 lg:block">
-              <SpecialtyCard item={active} onClose={() => setPanelOpen(false)} {...navProps} />
+              <SpecialtyCard item={active} onClose={() => setPanelOpen(false)} />
             </div>
           )}
         </div>
       </div>
 
       <div className="lg:hidden">
-        {modalOpen && (
-          <SpecialtyModal item={active} onClose={() => setModalOpen(false)} {...navProps} />
-        )}
+        {modalOpen && <SpecialtyModal item={active} onClose={() => setModalOpen(false)} />}
       </div>
     </section>
   );

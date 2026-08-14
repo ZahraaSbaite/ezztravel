@@ -1,6 +1,6 @@
 import SpecialtyIcon from "./SpecialtyIcon";
 
-export default function SpecialtyCard({ item, onClose, onPrev, onNext, position }) {
+export default function SpecialtyCard({ item, onClose }) {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-gold/25 bg-panel shadow-luxe">
       <span
@@ -20,34 +20,6 @@ export default function SpecialtyCard({ item, onClose, onPrev, onNext, position 
           <path d="M6 6l12 12M18 6L6 18" />
         </svg>
       </button>
-
-      {(onPrev || onNext) && (
-        <div className="absolute left-5 top-5 z-10 flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onPrev}
-            aria-label="Previous specialty"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-panel text-gold transition-colors hover:bg-gold hover:text-night"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M15 6l-6 6 6 6" />
-            </svg>
-          </button>
-          {position && (
-            <span className="font-mono text-xs text-fg/40">{position}</span>
-          )}
-          <button
-            type="button"
-            onClick={onNext}
-            aria-label="Next specialty"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-panel text-gold transition-colors hover:bg-gold hover:text-night"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M9 6l6 6-6 6" />
-            </svg>
-          </button>
-        </div>
-      )}
 
       <div className="max-h-[85vh] overflow-y-auto p-10">
         <div className="relative flex items-center gap-4">
