@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }) {
     <main>
       <Nav />
       <article className="bg-surface px-6 py-20 text-fg">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-4xl">
           <Link
             href="/blog"
             className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] text-fg/50 transition-colors hover:text-gold"
@@ -53,33 +53,36 @@ export default async function BlogPostPage({ params }) {
             Back to blog
           </Link>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            {post.categories?.name && (
-              <span className="rounded-full border border-gold/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-gold">
-                {post.categories.name}
-              </span>
-            )}
-            <span className="text-xs text-fg/40">{date}</span>
-          </div>
-
-          <h1 className="mt-4 font-display text-3xl leading-tight text-fg md:text-4xl">
-            {post.title}
-          </h1>
-
-          <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10">
-            <div className="overflow-hidden rounded-lg border border-gold/15 lg:sticky lg:top-28">
-              <img src={post.thumbnail_url} alt="" className="w-full object-cover" />
+          <div className="mt-8 flex flex-col gap-8 sm:flex-row sm:items-start">
+            <div className="w-full shrink-0 overflow-hidden rounded-lg border border-gold/15 sm:w-56 md:w-64">
+              <img src={post.thumbnail_url} alt="" className="aspect-[4/5] w-full object-cover" />
             </div>
 
-            <div className="space-y-5 text-[15px] leading-[1.9] text-fg/75">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-3">
+                {post.categories?.name && (
+                  <span className="rounded-full border border-gold/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-gold">
+                    {post.categories.name}
+                  </span>
+                )}
+                <span className="text-xs text-fg/40">{date}</span>
+              </div>
+
+              <h1 className="mt-4 font-display text-2xl font-bold leading-tight text-fg md:text-3xl">
+                {post.title}
+              </h1>
+
               {post.subtitle && (
-                <p className="font-display text-xl italic leading-relaxed text-fg">
+                <p className="mt-3 text-lg italic leading-relaxed text-fg/80">
                   {post.subtitle}
                 </p>
               )}
-              {paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+
+              <div className="mt-5 space-y-4 text-[15px] font-normal leading-[1.9] text-fg/70">
+                {paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
             </div>
           </div>
 
