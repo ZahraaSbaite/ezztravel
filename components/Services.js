@@ -1,33 +1,15 @@
+import { supabase } from "@/lib/supabaseClient";
 import SectionHeading from "./SectionHeading";
 
-const services = [
-  {
-    title: "First-class ticketing",
-    description: "Personalized flight booking and reservations.",
-  },
-  {
-    title: "Worldwide visa assistance",
-    description: "Hassle-free support for Schengen, China, and beyond.",
-  },
-  {
-    title: "Elite travel packages",
-    description: "Tailor-made getaways built around your lifestyle.",
-  },
-  {
-    title: "VIP meet and assist",
-    description: "Airport lounge access, private car, royal treatment.",
-  },
-  {
-    title: "Ziara and Omra VIP",
-    description: "Spiritual journeys with elegance, comfort, and care.",
-  },
-  {
-    title: "Global cargo",
-    description: "Air freight, sea cargo, and express delivery.",
-  },
-];
+export default async function Services() {
+  const { data: services } = await supabase
+    .from("services")
+    .select("id, title, description")
+    .eq("published", true)
+    .order("position", { ascending: true });
 
-export default function Services() {
+  if (!services || services.length === 0) return null;
+
   return (
     <section id="services" className="relative overflow-hidden bg-surface-2 px-6 py-28 text-fg">
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-30" />
@@ -40,7 +22,7 @@ export default function Services() {
         <div className="mt-14 grid gap-px overflow-hidden rounded-sm border border-gold/15 bg-gold/10 md:grid-cols-3">
           {services.map((service, i) => (
             <div
-              key={service.title}
+              key={service.id}
               className="group relative bg-surface-2 p-8 transition-colors duration-300 hover:bg-panel"
             >
               <span className="font-mono text-xs text-gold/40">

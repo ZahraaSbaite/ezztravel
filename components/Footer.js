@@ -12,14 +12,39 @@ export default function Footer() {
         </div>
         <div className="text-sm text-fg/70">
           <p className="mb-2 font-mono text-[11px] tracking-[0.25em] text-gold">PHONE</p>
-          <p>+961 81 839 155</p>
-          <p>+225 07 07 016 056</p>
-          <p>+225 07 07 534 308</p>
+          <a
+            href="https://wa.me/96181839155"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block transition-colors hover:text-gold"
+          >
+            +961 81 839 155
+          </a>
+          <a
+            href="https://wa.me/2250707016056"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block transition-colors hover:text-gold"
+          >
+            +225 07 07 016 056
+          </a>
+          <a
+            href="https://wa.me/2250707534308"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block transition-colors hover:text-gold"
+          >
+            +225 07 07 534 308
+          </a>
         </div>
         <div className="text-sm text-fg/70">
           <p className="mb-2 font-mono text-[11px] tracking-[0.25em] text-gold">EMAIL</p>
-          <p>Ezzedinep@hotmail.com</p>
-          <p>abssobdeir@gmail.com</p>
+          <a href="mailto:Ezzedinep@hotmail.com" className="block transition-colors hover:text-gold">
+            Ezzedinep@hotmail.com
+          </a>
+          <a href="mailto:abssobdeir@gmail.com" className="block transition-colors hover:text-gold">
+            abssobdeir@gmail.com
+          </a>
           <a
             href="https://www.instagram.com/ezztravell"
             className="mt-3 inline-flex items-center gap-2 transition-colors hover:text-gold"

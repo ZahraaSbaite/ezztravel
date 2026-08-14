@@ -29,7 +29,7 @@ export default function Hero() {
 
       <div className="relative z-10 flex flex-col items-center">
         <div
-          className="animate-fade-up opacity-0 [animation-delay:3.2s]"
+          className="animate-fade-up opacity-0 [animation-delay:0.15s]"
           style={{ animationFillMode: "forwards" }}
         >
           <div className="relative mx-auto w-[220px] animate-float md:w-[260px]">
@@ -43,14 +43,14 @@ export default function Hero() {
         </div>
 
         <p
-          className="mt-4 animate-fade-up font-mono text-xs tracking-[0.4em] text-gold/80 opacity-0 [animation-delay:3.4s]"
+          className="mt-4 animate-fade-up font-mono text-xs tracking-[0.4em] text-gold/80 opacity-0 [animation-delay:0.35s]"
           style={{ animationFillMode: "forwards" }}
         >
           BEIRUT · ABIDJAN
         </p>
 
         <h1
-          className="mx-auto mt-6 max-w-3xl animate-fade-up font-display text-4xl leading-[1.1] tracking-tight opacity-0 [animation-delay:3.5s] md:text-6xl"
+          className="mx-auto mt-6 max-w-3xl animate-fade-up font-display text-4xl leading-[1.1] tracking-tight opacity-0 [animation-delay:0.45s] md:text-6xl"
           style={{ animationFillMode: "forwards" }}
         >
           Where every journey feels{" "}
@@ -60,7 +60,7 @@ export default function Hero() {
         </h1>
 
         <p
-          className="mx-auto mt-6 max-w-xl animate-fade-up text-fg/70 opacity-0 [animation-delay:3.65s]"
+          className="mx-auto mt-6 max-w-xl animate-fade-up text-fg/70 opacity-0 [animation-delay:0.6s]"
           style={{ animationFillMode: "forwards" }}
         >
           Tailored trips, VIP airport meet and assist, visas, and spiritual
@@ -69,7 +69,7 @@ export default function Hero() {
         </p>
 
         <div
-          className="mt-10 flex animate-fade-up flex-col gap-4 opacity-0 [animation-delay:3.8s] sm:flex-row"
+          className="mt-10 flex animate-fade-up flex-col gap-4 opacity-0 [animation-delay:0.75s] sm:flex-row"
           style={{ animationFillMode: "forwards" }}
         >
           <a
@@ -87,7 +87,7 @@ export default function Hero() {
         </div>
 
         <div
-          className="mt-14 flex animate-fade-up items-center gap-3 text-fg/50 opacity-0 [animation-delay:4s]"
+          className="mt-14 flex animate-fade-up items-center gap-3 text-fg/50 opacity-0 [animation-delay:0.95s]"
           style={{ animationFillMode: "forwards" }}
         >
           <span className="h-px w-10 bg-gold/40" />
@@ -101,7 +101,7 @@ export default function Hero() {
       {/* wing accents, echo the logo mark */}
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 left-1/2 h-6 w-40 -translate-x-1/2 animate-fade-up opacity-0 [animation-delay:4.1s] md:w-56"
+        className="pointer-events-none absolute bottom-10 left-1/2 h-6 w-40 -translate-x-1/2 animate-fade-up opacity-0 [animation-delay:1.05s] md:w-56"
         style={{ animationFillMode: "forwards" }}
         viewBox="0 0 220 40"
         fill="none"

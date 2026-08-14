@@ -5,12 +5,12 @@ import Services from "@/components/Services";
 import Specialties from "@/components/Specialties";
 import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
-import PlaneIntro from "@/components/PlaneIntro";
+
+export const revalidate = 0;
 
 export default function Home() {
   return (
     <main>
-      <PlaneIntro />
       <Nav />
       <Hero />
       <About />

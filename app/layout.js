@@ -9,15 +9,15 @@ export const metadata = {
 const THEME_INIT_SCRIPT = `
   try {
     var stored = localStorage.getItem('theme');
-    var dark = stored ? stored === 'dark' : true;
+    var dark = stored ? stored === 'dark' : false;
     document.documentElement.classList.toggle('dark', dark);
-    if (!stored) localStorage.setItem('theme', 'dark');
+    if (!stored) localStorage.setItem('theme', 'light');
   } catch (e) {}
 `;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
