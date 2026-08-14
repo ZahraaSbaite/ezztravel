@@ -1,10 +1,5 @@
 import Link from "next/link";
 
-function excerpt(text, max = 140) {
-  const clean = text.replace(/\s+/g, " ").trim();
-  return clean.length > max ? `${clean.slice(0, max).trimEnd()}…` : clean;
-}
-
 export default function BlogCard({ post }) {
   return (
     <Link
@@ -31,12 +26,14 @@ export default function BlogCard({ post }) {
             {post.categories.name}
           </span>
         )}
-        <h3 className="font-display text-lg text-fg transition-colors group-hover:text-gold">
-          {post.title}
-        </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-fg/60">
-          {post.subtitle || excerpt(post.content)}
-        </p>
+        <div className="flex-1">
+          <h3 className="font-display text-lg text-fg transition-colors group-hover:text-gold">
+            {post.title}
+          </h3>
+          {post.subtitle && (
+            <p className="mt-2 text-sm leading-relaxed text-fg/60">{post.subtitle}</p>
+          )}
+        </div>
         <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-gold">
           Read more
           <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
