@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SectionHeading from "@/components/SectionHeading";
 import BlogCard from "@/components/BlogCard";
+import CategoryFilter from "@/components/CategoryFilter";
 
 export const metadata = {
   title: "Blog — Ezz Travel",
@@ -41,31 +42,7 @@ export default async function BlogPage({ searchParams }) {
           <SectionHeading eyebrow="BLOG" title="Stories from the road" />
 
           {categories && categories.length > 0 && (
-            <div className="mt-10 flex flex-wrap justify-center gap-2">
-              <a
-                href="/blog"
-                className={`rounded-full border px-4 py-1.5 text-xs uppercase tracking-[0.1em] transition-colors ${
-                  !activeCategory
-                    ? "border-gold bg-gold text-night"
-                    : "border-edge/20 text-fg/60 hover:border-gold hover:text-gold"
-                }`}
-              >
-                All
-              </a>
-              {categories.map((c) => (
-                <a
-                  key={c.id}
-                  href={`/blog?category=${c.slug}`}
-                  className={`rounded-full border px-4 py-1.5 text-xs uppercase tracking-[0.1em] transition-colors ${
-                    activeCategory?.id === c.id
-                      ? "border-gold bg-gold text-night"
-                      : "border-edge/20 text-fg/60 hover:border-gold hover:text-gold"
-                  }`}
-                >
-                  {c.name}
-                </a>
-              ))}
-            </div>
+            <CategoryFilter categories={categories} activeSlug={activeCategory?.slug || ""} />
           )}
 
           {error && (

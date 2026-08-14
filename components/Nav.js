@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
@@ -11,6 +14,8 @@ const links = [
 ];
 
 export default function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 border-b border-gold/20 bg-surface/95 shadow-[0_1px_0_rgba(198,161,91,0.15)] backdrop-blur">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
@@ -40,12 +45,41 @@ export default function Nav() {
           <ThemeToggle />
           <a
             href="/#contact"
-            className="rounded-sm border border-gold px-4 py-2 text-sm tracking-wide text-gold transition-all hover:bg-gold hover:text-night hover:shadow-gold-glow"
+            className="hidden rounded-sm border border-gold px-4 py-2 text-sm tracking-wide text-gold transition-all hover:bg-gold hover:text-night hover:shadow-gold-glow sm:inline-block"
           >
             Contact us
           </a>
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-edge/20 text-fg/70 transition-colors hover:border-gold hover:text-gold md:hidden"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              {menuOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
         </div>
       </nav>
+
+      {menuOpen && (
+        <div className="border-t border-gold/15 bg-surface px-6 py-4 md:hidden">
+          <ul className="flex flex-col gap-1 text-sm text-fg/80">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block rounded-sm px-2 py-2.5 transition-colors hover:bg-gold/10 hover:text-gold"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }
