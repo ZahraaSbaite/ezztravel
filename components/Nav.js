@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
@@ -15,6 +15,19 @@ const links = [
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    document.body.style.overflow = "hidden";
+    function handleKey(e) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gold/20 bg-surface/95 shadow-[0_1px_0_rgba(198,161,91,0.15)] backdrop-blur">
@@ -51,35 +64,60 @@ export default function Nav() {
           </a>
           <button
             type="button"
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
             aria-expanded={menuOpen}
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-edge/20 text-fg/70 transition-colors hover:border-gold hover:text-gold md:hidden"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              {menuOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+              <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           </button>
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="border-t border-gold/15 bg-surface px-6 py-4 md:hidden">
-          <ul className="flex flex-col gap-1 text-sm text-fg/80">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block rounded-sm px-2 py-2.5 transition-colors hover:bg-gold/10 hover:text-gold"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+      {/* backdrop */}
+      <div
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+        className={`fixed inset-0 z-[60] bg-night/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
+
+      {/* slide-in drawer */}
+      <div
+        className={`fixed inset-y-0 right-0 z-[70] flex w-72 max-w-[80vw] flex-col border-l border-gold/20 bg-surface shadow-luxe transition-transform duration-300 md:hidden ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between border-b border-gold/15 px-5 py-4">
+          <span className="font-display text-base text-fg">Menu</span>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-edge/20 text-fg/70 transition-colors hover:border-gold hover:text-gold"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
         </div>
-      )}
+        <ul className="flex flex-col gap-1 px-3 py-4 text-sm text-fg/80">
+          {links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block rounded-sm px-3 py-3 transition-colors hover:bg-gold/10 hover:text-gold"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   );
 }
