@@ -115,6 +115,9 @@ export default function AdminGate({ children }) {
               <a href="/admin/specialties" className="transition-colors hover:text-gold">
                 Specialties
               </a>
+              <a href="/admin/reviews" className="transition-colors hover:text-gold">
+                Reviews
+              </a>
             </nav>
           </div>
           <div className="flex items-center gap-4">
