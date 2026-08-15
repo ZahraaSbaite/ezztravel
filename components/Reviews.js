@@ -78,10 +78,13 @@ function TicketShell({ children, stub, className = "" }) {
   );
 }
 
+const REVIEWS_PER_PAGE = 4;
+
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [page, setPage] = useState(0);
 
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -130,6 +133,7 @@ export default function Reviews() {
         return;
       }
       setReviews((prev) => [data.review, ...prev]);
+      setPage(0);
       setName("");
       setComment("");
       setRating(0);
@@ -144,6 +148,18 @@ export default function Reviews() {
     reviews.length > 0
       ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
       : null;
+
+  const totalPages = Math.max(1, Math.ceil(reviews.length / REVIEWS_PER_PAGE));
+  const pageStart = page * REVIEWS_PER_PAGE;
+  const visibleReviews = reviews.slice(pageStart, pageStart + REVIEWS_PER_PAGE);
+
+  function goPrev() {
+    setPage((p) => (p - 1 + totalPages) % totalPages);
+  }
+
+  function goNext() {
+    setPage((p) => (p + 1) % totalPages);
+  }
 
   return (
     <section id="reviews" className="relative overflow-hidden bg-surface-2 px-6 py-28 text-fg">
@@ -260,13 +276,13 @@ export default function Reviews() {
           )}
 
           <div className="grid gap-6 md:grid-cols-2">
-            {reviews.map((r, i) => (
+            {visibleReviews.map((r, i) => (
               <TicketShell
                 key={r.id}
                 stub={
                   <>
                     <p className="font-mono text-[10px] tracking-[0.2em] text-gold/70">SEAT</p>
-                    <p className="font-display text-lg text-fg">{seatFor(i)}</p>
+                    <p className="font-display text-lg text-fg">{seatFor(pageStart + i)}</p>
                     <div className="mt-2">
                       <Stars value={r.rating} readOnly size="text-xs" />
                     </div>
@@ -297,6 +313,34 @@ export default function Reviews() {
               </TicketShell>
             ))}
           </div>
+
+          {totalPages > 1 && (
+            <div className="mt-8 flex items-center justify-center gap-6">
+              <button
+                type="button"
+                onClick={goPrev}
+                aria-label="Previous reviews"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 text-gold transition-colors hover:bg-gold hover:text-night"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <p className="font-mono text-xs tracking-[0.2em] text-fg/50">
+                {page + 1} / {totalPages}
+              </p>
+              <button
+                type="button"
+                onClick={goNext}
+                aria-label="Next reviews"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 text-gold transition-colors hover:bg-gold hover:text-night"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
