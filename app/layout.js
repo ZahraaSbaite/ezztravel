@@ -1,9 +1,24 @@
 import "./globals.css";
 
+const description =
+  "Tailored trips, VIP airport meet and assist, visas, and spiritual travel, planned end to end from Beirut and Abidjan.";
+
 export const metadata = {
+  metadataBase: new URL("https://www.ezztravel.agency"),
   title: "Ezz Travel — Where every journey feels first class",
-  description:
-    "Tailored trips, VIP airport meet and assist, visas, and spiritual travel, planned end to end from Beirut and Abidjan.",
+  description,
+  openGraph: {
+    title: "Ezz Travel — Where every journey feels first class",
+    description,
+    url: "https://www.ezztravel.agency",
+    siteName: "Ezz Travel",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ezz Travel — Where every journey feels first class",
+    description,
+  },
 };
 
 const THEME_INIT_SCRIPT = `
