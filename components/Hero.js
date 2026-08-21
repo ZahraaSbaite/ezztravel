@@ -46,7 +46,7 @@ export default function Hero() {
           className="mt-4 animate-fade-up font-mono text-xs tracking-[0.4em] text-gold/80 opacity-0 [animation-delay:0.35s]"
           style={{ animationFillMode: "forwards" }}
         >
-          BEIRUT · ABIDJAN
+          EZZ TRAVEL · TRAVEL AGENCY · BEIRUT · ABIDJAN
         </p>
 
         <h1
